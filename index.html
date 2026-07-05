@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isaac Natarajan — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D1117;
+  --surface:#161B22;
+  --surface-2:#1C2128;
+  --border:#30363D;
+  --text:#E6EDF3;
+  --muted:#8B949E;
+  --amber:#F0B429;
+  --blue:#58A6FF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,17,23,0.85);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px;}
+.nav-brand{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--amber);}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--muted);}
+.nav-links a:hover{color:var(--text);}
+
+/* HERO */
+header.hero{padding:100px 0 60px;}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  color:var(--amber);
+  font-size:13px;
+  letter-spacing:0.5px;
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--amber);border-radius:50%;display:inline-block;box-shadow:0 0 8px var(--amber);}
+h1{
+  font-size:clamp(36px,6vw,58px);
+  font-weight:800;
+  letter-spacing:-1.5px;
+  line-height:1.05;
+  margin-bottom:18px;
+}
+h1 span{color:var(--blue);}
+.tagline{
+  font-size:19px;
+  color:var(--muted);
+  max-width:620px;
+  margin-bottom:32px;
+}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{
+  font-family:'JetBrains Mono',monospace;
+  font-size:14px;
+  padding:11px 20px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  transition:all .15s ease;
+}
+.btn-primary{background:var(--amber);color:#0D1117;border-color:var(--amber);font-weight:700;}
+.btn-primary:hover{background:#ffc94a;}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+
+/* PIPELINE SIGNATURE */
+.pipeline{padding:50px 0 70px;overflow-x:auto;}
+.pipeline-track{
+  display:flex;align-items:center;
+  min-width:640px;
+  font-family:'JetBrains Mono',monospace;
+}
+.stage{
+  flex:1;text-align:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px 10px;
+  position:relative;
+}
+.stage .n{font-size:11px;color:var(--muted);}
+.stage .t{font-size:14px;font-weight:700;margin-top:4px;color:var(--text);}
+.connector{
+  flex:0 0 34px;height:2px;background:var(--border);
+  position:relative;
+}
+.connector .dot{
+  position:absolute;top:-3px;left:0;width:8px;height:8px;border-radius:50%;
+  background:var(--amber);
+  animation:flow 2.4s linear infinite;
+}
+.connector:nth-child(4) .dot{animation-delay:.6s;}
+.connector:nth-child(6) .dot{animation-delay:1.2s;}
+@keyframes flow{
+  0%{left:0;opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:1;}
+  100%{left:calc(100% - 8px);opacity:0;}
+}
+@media(prefers-reduced-motion:reduce){.connector .dot{animation:none;opacity:1;left:45%;}}
+
+/* SECTIONS */
+section{padding:60px 0;border-top:1px solid var(--border);}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:32px;}
+.section-head .idx{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:14px;}
+.section-head h2{font-size:26px;font-weight:700;}
+
+/* PROJECT CARDS */
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:720px){.projects{grid-template-columns:1fr;}}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:22px;
+  display:flex;flex-direction:column;
+  transition:border-color .15s ease, transform .15s ease;
+}
+.card:hover{border-color:var(--blue);transform:translateY(-2px);}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.card h3{font-size:17px;font-weight:700;}
+.card a.repo{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;}
+.card a.repo:hover{color:var(--blue);}
+.card p{color:var(--muted);font-size:14px;margin-bottom:14px;flex:1;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--amber);
+  background:rgba(240,180,41,0.1);
+  border:1px solid rgba(240,180,41,0.25);
+  padding:3px 8px;border-radius:4px;
+}
+
+/* EXPERIENCE */
+.timeline{border-left:2px solid var(--border);padding-left:24px;display:flex;flex-direction:column;gap:28px;}
+.tl-item{position:relative;}
+.tl-item::before{
+  content:"";position:absolute;left:-30px;top:4px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--blue);
+}
+.tl-item .role{font-weight:700;font-size:16px;}
+.tl-item .meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin:4px 0 8px;}
+.tl-item ul{padding-left:18px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:4px;}
+
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+.skill-cat h4{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);margin-bottom:10px;letter-spacing:0.5px;}
+.skill-cat .tags{gap:6px;}
+.skill-cat .tag{color:var(--text);background:var(--surface);border-color:var(--border);}
+
+/* FOOTER / CONTACT */
+footer{padding:60px 0 80px;text-align:center;}
+footer h2{font-size:28px;margin-bottom:12px;}
+footer p{color:var(--muted);margin-bottom:28px;}
+.contact-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.contact-row a{
+  font-family:'JetBrains Mono',monospace;font-size:14px;
+  padding:10px 18px;border:1px solid var(--border);border-radius:6px;
+}
+.contact-row a:hover{border-color:var(--blue);color:var(--blue);}
+.copyright{margin-top:50px;color:#4d545c;font-size:12px;font-family:'JetBrains Mono',monospace;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-brand">isaac.natarajan</div>
+    <div class="nav-links">
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">available for opportunities</div>
+    <h1>Isaac Natarajan<br>builds <span>LLM systems</span> that ship.</h1>
+    <p class="tagline">AI Engineer specializing in RAG pipelines, AI agents, and Model Context Protocol (MCP) tools — turning modern LLM ecosystems into production-ready backend systems.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">View Projects →</a>
+      <a class="btn btn-ghost" href="mailto:natarajanisaac57@gmail.com">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<div class="pipeline">
+  <div class="wrap">
+    <div class="pipeline-track">
+      <div class="stage"><div class="n">01</div><div class="t">Ingest</div></div>
+      <div class="connector"><div class="dot"></div></div>
+      <div class="stage"><div class="n">02</div><div class="t">Embed</div></div>
+      <div class="connector"><div class="dot"></div></div>
+      <div class="stage"><div class="n">03</div><div class="t">Retrieve</div></div>
+      <div class="connector"><div class="dot"></div></div>
+      <div class="stage"><div class="n">04</div><div class="t">Generate</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="idx mono">§1</span><h2>Featured Projects</h2></div>
+    <div class="projects">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Advanced RAG System</h3>
+          <a class="repo" href="https://github.com/IsaacNatarajan/Advanced-RAG" target="_blank">repo →</a>
+        </div>
+        <p>Multi-strategy chunking evaluation (fixed, recursive, semantic, hierarchical) on Apple 10-K filings. Custom LLM-as-judge framework — semantic chunking scored 0.86, beating baseline by 18%.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">NVIDIA NIM</span><span class="tag">Qdrant</span><span class="tag">LangChain</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>AI Interview Assistant</h3>
+          <a class="repo" href="https://github.com/IsaacNatarajan/AI-Interview-Simulator" target="_blank">repo →</a>
+        </div>
+        <p>Multi-agent system with 9 specialized agents coordinated via LangGraph conditional routing. Full-stack with FastAPI, MongoDB, React, and Langfuse observability.</p>
+        <div class="tags">
+          <span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Mental Health Journal MCP</h3>
+          <a class="repo" href="https://github.com/IsaacNatarajan/Mental-Health-Journal" target="_blank">repo →</a>
+        </div>
+        <p>8-tool MCP server for journaling with cognitive distortion detection and mood trend analysis. Dual-model NVIDIA NIM architecture, fully local SQLite storage.</p>
+        <div class="tags">
+          <span class="tag">MCP</span><span class="tag">NVIDIA NIM</span><span class="tag">SQLite</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Internal Prompt Review Tool</h3>
+          <a class="repo" href="https://github.com/IsaacNatarajan123/Prompt-review-tool" target="_blank">repo →</a>
+        </div>
+        <p>MCP agent reviewing and scoring team prompts using dual NVIDIA NIM models. Deployed on Railway via SSE with a Streamlit chat UI.</p>
+        <div class="tags">
+          <span class="tag">MCP</span><span class="tag">Streamlit</span><span class="tag">Railway</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="idx mono">§2</span><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="role">AI Engineer Intern — Productsquads</div>
+        <div class="meta">Hyderabad, India · May 2026 – Present</div>
+        <ul>
+          <li>Built scalable backend APIs in Python powering production LLM workflows.</li>
+          <li>Designed RAG pipelines: ingestion, embeddings, vector search, context-aware generation.</li>
+          <li>Integrated external tools and APIs for intelligent automation.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="role">Machine Learning Intern — Prodigy Infotech</div>
+        <div class="meta">Chennai, India · Jan 2024 – Feb 2024</div>
+        <ul>
+          <li>Built CNN-based image classification models for computer vision tasks.</li>
+          <li>End-to-end ML workflows with TensorFlow, Keras, OpenCV, Scikit-learn.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="role">Data Science Intern — ExcelR Solutions</div>
+        <div class="meta">Chennai, India · Jul 2023 – Oct 2023</div>
+        <ul>
+          <li>Cleaned and analyzed large datasets using Python, Pandas, NumPy.</li>
+          <li>Automated preprocessing and model evaluation workflows.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="idx mono">§3</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-cat">
+        <h4>GENERATIVE AI</h4>
+        <div class="tags"><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">AI Agents</span><span class="tag">MCP</span><span class="tag">Prompt Engineering</span></div>
+      </div>
+      <div class="skill-cat">
+        <h4>FRAMEWORKS</h4>
+        <div class="tags"><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">React</span></div>
+      </div>
+      <div class="skill-cat">
+        <h4>VECTOR DBs</h4>
+        <div class="tags"><span class="tag">Qdrant</span><span class="tag">FAISS</span><span class="tag">ChromaDB</span></div>
+      </div>
+      <div class="skill-cat">
+        <h4>AI PLATFORMS</h4>
+        <div class="tags"><span class="tag">NVIDIA NIM</span><span class="tag">OpenAI</span><span class="tag">Groq</span><span class="tag">Claude</span><span class="tag">Gemini</span></div>
+      </div>
+      <div class="skill-cat">
+        <h4>ML / DATA</h4>
+        <div class="tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Pandas</span><span class="tag">NumPy</span></div>
+      </div>
+      <div class="skill-cat">
+        <h4>TOOLS</h4>
+        <div class="tags"><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Langfuse</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's build something.</h2>
+    <p>Open to AI engineering roles and interesting collaborations.</p>
+    <div class="contact-row">
+      <a href="mailto:natarajanisaac57@gmail.com">✉ Email</a>
+      <a href="https://www.linkedin.com/in/isaac-natarajan-560316212/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/IsaacNatarajan" target="_blank">GitHub</a>
+    </div>
+    <div class="copyright">© 2026 Isaac Natarajan · Built and deployed via GitHub Pages</div>
+  </div>
+</footer>
+
+</body>
+</html>
