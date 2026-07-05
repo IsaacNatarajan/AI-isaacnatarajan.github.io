@@ -43,6 +43,12 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:5
 
 /* HERO */
 header.hero{padding:100px 0 60px;}
+.hero-top{display:flex;align-items:center;gap:20px;margin-bottom:8px;}
+.avatar{
+  width:88px;height:88px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--border);
+  flex-shrink:0;
+}
 .eyebrow{
   font-family:'JetBrains Mono',monospace;
   color:var(--amber);
@@ -158,7 +164,10 @@ footer p{color:var(--muted);margin-bottom:28px;}
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">available for opportunities</div>
+    <div class="hero-top">
+      <img src="photo.jpg" alt="Isaac Natarajan" class="avatar">
+      <div class="eyebrow" style="margin-bottom:0;">available for opportunities</div>
+    </div>
     <h1>Isaac Natarajan<br>builds <span>LLM systems</span> that ship.</h1>
     <p class="tagline">AI Engineer specializing in RAG pipelines, AI agents, and Model Context Protocol (MCP) tools — turning modern LLM ecosystems into production-ready backend systems.</p>
     <div class="cta-row">
